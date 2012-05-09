@@ -23,7 +23,7 @@
 			}
 			break;
 		case "dashboard":
-			$options["wheres"] = array("(e.owner_guid <> " . $widget->getOnwerGUID() . ")");
+			$options["wheres"] = array("(e.owner_guid <> " . $widget->getOwnerGUID() . ")");
 			break;
 		default:
 			$options["container_guid"] = $widget->getOwnerGUID();
