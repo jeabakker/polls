@@ -8,11 +8,15 @@
  */
 function polls_check_for_previous_vote($poll, $user_guid)
 {
+	
+	$choices = polls_get_choice_array($poll);
+	
 	$options = array(
 		'guid'	=>	$poll->guid,
 		'type'	=>	"object",
 		'subtype' => "poll",
 		'annotation_name' => "vote",
+		'annotation_values' => $choices,
 		'annotation_owner_guid' => $user_guid,
 		'limit' => 1
 	);

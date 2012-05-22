@@ -11,7 +11,8 @@ $guid = get_input('guid');
 //get the poll entity
 $poll = get_entity($guid);
 if (elgg_instanceof($poll,'object','poll')) {
-		
+	elgg_load_library('elgg:polls');
+	
 	// Make sure the response isn't blank
 	if (empty($response)) {
 		if (get_input('callback')) {
@@ -26,12 +27,11 @@ if (elgg_instanceof($poll,'object','poll')) {
 
 		// Otherwise, save the poll vote
 	} else {
-
+		
 		$user_guid = elgg_get_logged_in_user_guid();
 		
 		// check to see if this user has already voted
-		$options = array('annotation_name' => 'vote', 'annotation_owner_guid' => $user_guid, 'guid' => $guid);
-		if (!elgg_get_annotations($options)) {
+		if (!polls_check_for_previous_vote($poll, $user_guid)) {
 			//add vote as an annotation
 			$poll->annotate('vote', $response, $poll->access_id);
 	
