@@ -61,7 +61,7 @@ if (isset($vars['entity'])) {
 	?>
 
 <p>
-	<?php echo elgg_echo('polls:totalvotes') . $total_count; ?>
+	<?php echo elgg_echo('polls:totalvotes') . " " . $total_count; ?>
 </p>
 
 <?php
